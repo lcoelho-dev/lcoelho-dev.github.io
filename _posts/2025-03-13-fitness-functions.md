@@ -4,7 +4,7 @@ date: 2025-03-13 +/-TTTT
 categories: [ architeture ]
 tags: [ architeture, software ]
 author: lcoelho
-canonical_url: "https://lucascoelhosilva.github.io/fitness-functions"
+canonical_url: "https://lucascoelhosilva.github.io/posts/fitness-functions"
 published: true
 ---
 
