@@ -17,11 +17,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: List modified files
-        run: |
-          git fetch --all
-          git diff --name-only ${{ github.sha }}^ ${{ github.sha }
-
       - name: Extrair conteúdo do post
         id: extract_post
         run: |
