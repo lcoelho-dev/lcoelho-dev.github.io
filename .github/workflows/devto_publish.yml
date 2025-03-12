@@ -28,6 +28,15 @@ jobs:
           fi
           echo "FILE=$FILE" >> $GITHUB_ENV
 
+      - name: Verificar chave API
+        run: |
+          if [ -z "${{ secrets.DEVTO_API_KEY }}" ]; then
+            echo "A chave DEVTO_API_KEY não está definida!"
+            exit 1
+          else
+            echo "A chave DEVTO_API_KEY está definida."
+          fi
+
       - name: Publicar no Dev.to
         if: env.FILE != ''
         run: |
@@ -38,6 +47,8 @@ jobs:
             --arg title "$TITLE" \
             --arg body "$CONTENT" \
             '{ article: { title: $title, body_markdown: $body, published: true }}')
+
+          echo "Payload JSON: $JSON_DATA"
 
           curl -X POST "https://dev.to/api/articles" \
             -H "Content-Type: application/json" \
