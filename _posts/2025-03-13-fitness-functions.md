@@ -1,6 +1,6 @@
 ---
 title: Fitness Functions - O Check-up contínuo de seu Software
-date: 2025-03-12 +/-TTTT
+date: 2025-03-13 +/-TTTT
 categories: [ architeture ]
 tags: [ architeture, software ]
 author: lcoelho
