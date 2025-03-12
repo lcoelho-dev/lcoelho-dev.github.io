@@ -30,10 +30,12 @@ jobs:
 
       - name: Publicar no Dev.to
         if: env.FILE != ''
+        env: 
+          TOKEN_DEVTO: ${{ secrets.DEVTO_API_KEY }}
         run: |
           CONTENT=$(cat ${{ env.FILE }})
           JSON_DATA=$(jq -n --arg body "$CONTENT" '{ article: { title: "Meu Artigo", body_markdown: $body, published: true }}')
           curl -X POST "https://dev.to/api/articles" \
             -H "Content-Type: application/json" \
-            -H "api-key: ${{ secrets.DEVTO_API_KEY }}" \
+            -H "api-key: $TOKEN_DEVTO" \
             -d "$JSON_DATA"
