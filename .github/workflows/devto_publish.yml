@@ -30,9 +30,9 @@ jobs:
           echo "DEBUG: COMMIT_BEFORE = $COMMIT_BEFORE"
           git show $COMMIT_BEFORE --oneline || echo "DEBUG: Commit não encontrado no histórico"
 
-          if [ -z "$COMMIT_BEFORE" ]; then
-              echo "Primeiro commit ou branch recém-criada. Pegando todos os posts novos..."
-              FILE=$(git diff --name-only HEAD~1 | grep '^_posts/.*\.md' | head -n 1)
+          if [ -z "$COMMIT_BEFORE" ] || ! git cat-file -e $COMMIT_BEFORE^{commit} 2>/dev/null; then
+            echo "DEBUG: Commit antes não encontrado. Usando HEAD~1"
+            COMMIT_BEFORE=$(git rev-parse HEAD~1)
           else
               echo "DEBUG: Listando arquivos modificados desde $COMMIT_BEFORE..."
               git diff --name-only $COMMIT_BEFORE 94119e0a8eec2c4d07671b76c5dbf79f043d1154b
