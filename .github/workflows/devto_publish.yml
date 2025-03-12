@@ -14,15 +14,27 @@ jobs:
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
 
       - name: Extrair conteúdo do post
         id: extract_post
         run: |
-          FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^_posts/.*\.md' | head -n 1)
+          # Verifica se o commit 'before' é válido
+          COMMIT_BEFORE=$(git rev-parse --verify ${{ github.event.before }} 2>/dev/null || echo "HEAD~1")
+
+          if [ -z "$COMMIT_BEFORE" ]; then
+            echo "Primeiro commit ou branch recém-criada. Pegando todos os posts novos..."
+            FILE=$(git diff --name-only HEAD~1 | grep '^_posts/.*\.md' | head -n 1)
+          else
+            FILE=$(git diff --name-only $COMMIT_BEFORE ${{ github.sha }} | grep '^_posts/.*\.md' | head -n 1)
+          fi
+
           if [ -z "$FILE" ]; then
             echo "Nenhum novo post encontrado."
             exit 0
           fi
+
           echo "FILE=$FILE" >> $GITHUB_ENV
 
       - name: Publicar no Dev.to
