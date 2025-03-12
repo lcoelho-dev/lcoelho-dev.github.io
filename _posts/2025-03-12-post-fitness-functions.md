@@ -5,7 +5,7 @@ categories: [ architeture ]
 tags: [ architeture, software ]
 author: lcoelho
 canonical_url: "https://lucascoelhosilva.github.io/fitness-functions"
-published: false
+published: true
 ---
 
 ## Introdução
