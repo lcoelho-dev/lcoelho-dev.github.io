@@ -30,8 +30,6 @@ jobs:
 
       - name: Publicar no Dev.to
         if: env.FILE != ''
-        env: 
-          TOKEN_DEVTO: ${{ secrets.DEVTO_API_KEY }}
         run: |
           TITLE=$(git log -1 --pretty=%s)  # Obtém a mensagem do último commit
           CONTENT=$(cat ${{ env.FILE }})
