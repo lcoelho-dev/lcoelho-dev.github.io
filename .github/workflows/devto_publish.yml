@@ -1,0 +1,36 @@
+name: Publicar no Dev.to
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "_posts/*.md"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Extrair conteúdo do post
+        id: extract_post
+        run: |
+          FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^_posts/.*\.md' | head -n 1)
+          if [ -z "$FILE" ]; then
+            echo "Nenhum novo post encontrado."
+            exit 0
+          fi
+          echo "FILE=$FILE" >> $GITHUB_ENV
+
+      - name: Publicar no Dev.to
+        if: env.FILE != ''
+        run: |
+          CONTENT=$(cat ${{ env.FILE }})
+          JSON_DATA=$(jq -n --arg body "$CONTENT" '{ article: { title: "Meu Artigo", body_markdown: $body, published: true }}')
+          curl -X POST "https://dev.to/api/articles" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ secrets.DEVTO_API_KEY }}" \
+            -d "$JSON_DATA"
