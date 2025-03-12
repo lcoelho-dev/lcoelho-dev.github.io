@@ -17,37 +17,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: List modified files
+        run: |
+          git fetch --all
+          git diff --name-only ${{ github.sha }}^ ${{ github.sha }
+
       - name: Extrair conteúdo do post
         id: extract_post
         run: |
-          # Debug: Log do commit anterior vindo do evento
-          echo "DEBUG: github.event.before = ${{ github.event.before }}"
-
-          # Pegar o commit anterior
-          COMMIT_BEFORE=$(git rev-parse --verify ${{ github.event.before }} 2>/dev/null || echo "")
-
-          # Debug: Log do commit detectado
-          echo "DEBUG: COMMIT_BEFORE = $COMMIT_BEFORE"
-          git show $COMMIT_BEFORE --oneline || echo "DEBUG: Commit não encontrado no histórico"
-
-          if [ -z "$COMMIT_BEFORE" ] || ! git cat-file -e $COMMIT_BEFORE^{commit} 2>/dev/null; then
-            echo "DEBUG: Commit antes não encontrado. Usando HEAD~1"
-            COMMIT_BEFORE=$(git rev-parse HEAD~1)
-          else
-              echo "DEBUG: Listando arquivos modificados desde $COMMIT_BEFORE..."
-              git diff --name-only $COMMIT_BEFORE 94119e0a8eec2c4d07671b76c5dbf79f043d1154b
-
-              FILE=$(git diff --name-only $COMMIT_BEFORE 94119e0a8eec2c4d07671b76c5dbf79f043d1154b | grep '^_posts/.*\.md' | head -n 1)
-          fi
-
-          # Debug: Mostrar qual arquivo foi detectado
-          echo "DEBUG: Arquivo detectado para publicação: $FILE"
-
+          git fetch --all
+          FILE=$(git diff --name-only ${{ github.sha }}^ ${{ github.sha }} | grep '^_posts/.*\.md' | head -n 1)
           if [ -z "$FILE" ]; then
-              echo "Nenhum novo post encontrado."
-              exit 0
+            echo "Nenhum novo post encontrado."
+            exit 0
           fi
-
           echo "FILE=$FILE" >> $GITHUB_ENV
 
       - name: Publicar no Dev.to
