@@ -59,7 +59,7 @@ webmaster_verifications:
 # Web Analytics Settings
 analytics:
   cloudflare:
-    id: ${{ vars.CLOUDFLARE_ANALYTICS }}
+    id: ${{ secrets.CLOUDFLARE_ANALYTICS }}
   # google:
   #   id: # fill in your Google Analytics ID
   # goatcounter:
