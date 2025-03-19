@@ -1,8 +1,8 @@
 ---
 title: Fitness Functions - O Check-up contínuo de seu Software
-date: 2025-03-20 08:00:00 +/-TTTT +/-TTTT
+date: 2025-03-20 08:00:00 +/-TTTT
 categories: [ code-quality ]
-tags: [ software-quality, best-practices, fitness-functions, observability, java ]
+tags: [ software-quality, best-practices, fitness-functions, observability ]
 author: lcoelho
 canonical_url: "https://lcoelho-dev.github.io/posts/fitness-functions"
 published: true
