@@ -112,7 +112,7 @@ comments:
   provider: giscus # [disqus | utterances | giscus]
   # The provider options are as follows:
   giscus:
-    repo: lucascoelhosilva/lucascoelhosilva.github.io
+    repo: lcoelho-dev/lcoelho-dev.github.io
     repo_id: R_kgDOOGdXkA
     category: General
     category_id: DIC_kwDOOGdXkM4Cn3nl
