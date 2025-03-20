@@ -1,6 +1,6 @@
 ---
 title: Fitness Functions - O Check-up contínuo de seu Software
-date: 2025-03-20 08:00:00 +/-TTTT
+date: 2025-03-20 08:10:00 +/-TTTT
 categories: [ code-quality ]
 tags: [ softwarequality, bestpractices, fitnessfunctions, observability ]
 author: lcoelho
