@@ -82,11 +82,11 @@ Security é uma parte importante não podemos esquece-las e Fitness Functions co
 ![Performance](/assets/img/posts/fitness-functions/performance.png){: width="972" height="589" }
 
 A perfomance ou saúde do sistema tenho na minha visão que é o ponto chave se não tem algo funcionando alguém vai te chamar!! E não queremos isso haha
-Ela pode ser analisada de várias maneiras, porém vou dar um foco para a ferramenta [Open Telemtry](https://opentelemetry.io/), ela nasceu no projeto Cloud Native Foundation totalmente Open Source e bem consolidada. Na real eles padronizaram as APIs para que seja analogo a implementação para que você seja livre de trocar as ferramentas onde analisa os dados, seja Jaeger ou zipkin, Loki ou Kibana, enfim... A observabilidade pode nos mostrar se a aplicação esta saúdavel ou não, temos muitas métricas para analisar isso porém vou deixar algumas para exemplificar: 
+Ela pode ser analisada de várias maneiras, porém vou dar um foco para a ferramenta [Open Telemetry](https://opentelemetry.io/), ela nasceu no projeto Cloud Native Foundation totalmente Open Source e bem consolidada. Na real eles padronizaram as APIs para que seja analogo a implementação para que você seja livre de trocar as ferramentas onde analisa os dados, seja Jaeger ou zipkin, Loki ou Kibana, enfim... A observabilidade pode nos mostrar se a aplicação esta saúdavel ou não, temos muitas métricas para analisar isso porém vou deixar algumas para exemplificar: 
 
 ## Fitness Functions Performance 
 
-[Open Telemtry](https://opentelemetry.io/)
+[Open Telemetry](https://opentelemetry.io/)
 
 - Monitoramento para garantir tempos de resposta aceitáveis. (ex: P95 < 500ms)
 - Controle da taxa de erros 5xx.
